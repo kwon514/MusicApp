@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Music</title>
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/main.css') }}"/>
+        <link rel="icon" href="/static/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap"
+              rel="stylesheet">
+    </head>
+    <body>
+        <div id="body">
+            <!-- Include navigation partial. -->
+            {% include 'navigation.html' %}
+            <!-- Include header partial. -->
+            {% include 'header.html' %}
+            <div id="container">
+                <!-- Main content block to be supplied by page. -->
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </body>
+</html>
