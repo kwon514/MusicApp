@@ -3,6 +3,7 @@
 from pathlib import Path
 from flask import Flask, render_template
 
+import music.adapters.repository as repo
 from music.adapters.memory_repository import MemoryRepository
 
 
@@ -35,8 +36,6 @@ def create_app(test_config=None):
 
     # Create the MemoryRepository implementation for a memory-based repository.
     repo.repo_instance = MemoryRepository()
-    # fill the content of the repository from the provided csv files
-    populate(data_path, repo.repo_instance)
 
     with app.app_context():
         # Register blueprints.
