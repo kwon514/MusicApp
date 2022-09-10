@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <main id="search">
+        <h1 class="header-text">Search Tracks</h1>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Track Name</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in matching_tracks %}
+                    <tr>
+                        <td>{{ track.title }}</td>
+                        <td>{{ track.artist.full_name }}</td>
+                        <td>{{ track.album.title }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock content %}

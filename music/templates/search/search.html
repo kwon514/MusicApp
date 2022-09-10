@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <main id="search">
+        <h1 class="header-text">Search</h1>
+        <form action="{{ url_for('search_bp.search_tracks') }}">
+            <input type="text"
+                   id="target_track"
+                   name="target_track"
+                   placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+    </main>
+{% endblock content %}

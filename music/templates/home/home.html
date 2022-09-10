@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <main id="main">
+        <h1 class="header-text">Explore a new world of music.</h1>
+        <h2>Begin your journey now.</h2>
+        <a href="{{ url_for('home_bp.home')}}">Register</a>
+        <a href="{{ url_for('home_bp.home')}}">Login</a>
+    </main>
+{% endblock content %}
