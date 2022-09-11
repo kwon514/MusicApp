@@ -4,10 +4,10 @@
         <h1 class="header-text">Search</h1>
         <form action="{{ url_for('search_bp.search_tracks') }}">
             <input type="text"
-                   id="target_track"
+                   class="input-box"
                    name="target_track"
-                   placeholder="Search">
-            <button type="submit">Search</button>
+                   placeholder="What track are you looking for?">
+            <button class="btn-main input-button" type="submit">Search</button>
         </form>
     </main>
 {% endblock content %}
