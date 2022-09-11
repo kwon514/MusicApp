@@ -8,6 +8,7 @@
                     <th>Track Name</th>
                     <th>Artist</th>
                     <th>Album</th>
+                    <th>Duration</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                         <td>{{ track.title }}</td>
                         <td>{{ track.artist.full_name }}</td>
                         <td>{{ track.album.title }}</td>
+                        <td>{{ track.track_duration }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

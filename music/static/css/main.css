@@ -82,7 +82,7 @@
     position: relative;
 }
 
-#main a {
+.btn-main {
     font-size: 22.5px;
     font-family: Alegreya Sans SC, sans-serif;
     text-decoration: none;
@@ -93,7 +93,7 @@
     text-transform: uppercase;
 }
 
-#main a:hover {
+.btn-main:hover {
     color: white;
     background-color: rgb(26, 26, 26);
 }
@@ -102,6 +102,19 @@
 
 #search {
     margin: 0 80px;
+}
+
+.input-box {
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.input-button {
+    cursor: pointer;
+    border: 0;
 }
 
 .result-table {
@@ -119,3 +132,4 @@
 th, td {
     padding: 10px;
   }
+
