@@ -1,6 +1,6 @@
 <nav id="nav">
   <a class="header" href="{{ url_for('home_bp.home')}}">Music</a>
-  <a href="{{ url_for('search_bp.search')}}" class="btn-nav">Search</a>
-  <a href="" class="btn-nav">More</a>
-  <a href="" class="btn-nav">Other</a>
+  <a href="{{ url_for('search_bp.search_tracks')}}" class="btn-nav">Search by Track</a>
+  <a href="{{ url_for('search_bp.search_artists')}}" class="btn-nav">Search by Artist</a>
+  <a href="{{ url_for('search_bp.search_albums')}}" class="btn-nav">Search by Album</a>
 </nav>

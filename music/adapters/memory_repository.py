@@ -47,11 +47,18 @@ class MemoryRepository(AbstractRepository):
         return [track for track in self.__tracks if track.title.lower()[0:len(track_title)] == track_title.strip().lower()[0:len(track_title)]]
 
     def get_tracks_by_artist(self, track_artist: str) -> List[Track]:
-        return [track for track in self.__tracks if track.artist.full_name.lower() == track_artist.strip().lower()]
+        return [track for track in self.__tracks if track.artist.full_name.lower()[0:len(track_artist)] == track_artist.strip().lower()[0:len(track_artist)]]
 
     def get_tracks_by_album(self, album_name: str) -> List[Track]:
-        return [track for track in self.__tracks if track.album.title.lower() == album_name.strip().lower()]
-
+        #return [track for track in self.__tracks if track.album.title.lower()[0:len(album_name)] == album_name.strip().lower()[0:len(album_name)]]
+        results = []
+        for track in self.__tracks:
+            try:
+                if track.album.title.lower()[0:len(album_name)] == album_name.strip().lower()[0:len(album_name)]:
+                    results.append(track)
+            except AttributeError:
+                pass
+        return results
 
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))

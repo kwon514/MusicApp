@@ -11,3 +11,9 @@ from music.domainmodel.playlist import PlayList
 
 def get_tracks(track_name: str, repo: AbstractRepository):
     return repo.get_tracks_by_title(track_name)
+
+def get_artists(artist_name: str, repo: AbstractRepository):
+    return repo.get_tracks_by_artist(artist_name)
+
+def get_albums(album_name: str, repo: AbstractRepository):
+    return repo.get_tracks_by_album(album_name)
