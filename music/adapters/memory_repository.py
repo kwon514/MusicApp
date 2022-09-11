@@ -3,6 +3,8 @@ import csv
 from pathlib import Path
 from music.adapters import csvdatareader
 
+from werkzeug.security import generate_password_hash
+
 from music.adapters.csvdatareader import TrackCSVReader
 from music.adapters.repository import AbstractRepository, RepositoryException
 from music.domainmodel.user import User
@@ -53,9 +55,11 @@ class MemoryRepository(AbstractRepository):
         return [track for track in self.__tracks if track.album.title.lower() == album_name.strip().lower()]
 
 
+
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))
     file_data.read_csv_files()
     repo.set_track_list(file_data.dataset_of_tracks)
     repo.set_album_list(file_data.dataset_of_albums)
     repo.set_genre_list(file_data.dataset_of_genres)
+
