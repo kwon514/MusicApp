@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <playlists id="playlists">
+        <h1 class="title">My Playlists</h1>
+        <div class = "list-of-playlists">
+            {% for playlist in playlists %}
+              <li>{{ playlist.playlist_name }}</li>
+            {% endfor %}
+        </div>
+    </playlists>
+{% endblock content %}

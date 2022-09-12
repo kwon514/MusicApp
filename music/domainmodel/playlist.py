@@ -3,8 +3,19 @@ from music.domainmodel.track import Track
 
 class PlayList:
 
-    def __init__(self):
+    def __init__(self, playlist_name):
+        self.__playlist_name = playlist_name
         self.__list_of_tracks = []
+
+    @property
+    def playlist_name(self) -> str:
+        return self.__playlist_name
+
+    @playlist_name.setter
+    def name(self, playlist_name: str):
+        self.__playlist_name = None
+        if type(playlist_name) is str and playlist_name.strip() != '':
+            self.__playlist_name = playlist_name.strip()    
 
     def size(self):
         size_playlist = len(self.__list_of_tracks)

@@ -133,7 +133,7 @@ th, td {
     padding: 10px;
   }
 
-/* REGISTER PAGE */
+/* REGISTER & LOGIN PAGE */
 #authentication {
     margin: 0 80px;
 }
@@ -200,10 +200,56 @@ input[type='submit']:hover {
     background-color: rgb(26, 26, 26);
 }
 
-/* .error{
-    padding: 10px;
-    border-radius: 5px;
-    width: 300px;
-    height: 30px;
+
+/* CREATE_PLAYLIST PAGE */
+
+#create_playlist {
+    margin: 0 80px;
+}
+
+#create_playlist label{
     font-size: 18px;
-} */
+    font-family: Alegreya Sans SC, sans-serif;
+    padding: 3px;
+}
+
+input[type='text'],
+    select {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    input[value='Create'] {
+        font-size: 22.5px;
+        font-family: Alegreya Sans SC, sans-serif;
+        text-decoration: none;
+        padding: 12.5px 25px;
+        margin: 0 0 0 5px;
+        background-color: rgb(24, 24, 24);
+        color: rgb(206, 206, 206);
+        text-transform: uppercase;
+    }    
+
+input[type='submit']:hover {
+    color: white;
+    background-color: rgb(26, 26, 26);
+}
+
+/* PLAYLISTS PAGE */
+
+#playlists {
+    margin: 0 80px;
+}
+
+.list-of-playlists{
+    width: 50%;
+    padding: 12px 0px;
+    margin: 8px 0;
+    font-size: 20px;
+}

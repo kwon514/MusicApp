@@ -62,6 +62,15 @@ class MemoryRepository(AbstractRepository):
                 pass
         return results
 
+    def add_playlist(self, playlist: PlayList):
+        self.__playlists.append(playlist)
+
+    def get_playlist(self, playlist_name) -> PlayList:
+        return next((playlist for playlist in self.__playlists if playlist.playlist_name == playlist_name), None)
+
+    def get_playlists(self) -> List[PlayList]:
+        return self.__playlists    
+
 
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))

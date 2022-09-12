@@ -59,7 +59,7 @@ def login():
             # Initialise session and redirect the user to the home page.
             session.clear()
             session['user_name'] = user['user_name']
-            return redirect(url_for('search_bp.search'))
+            return redirect(url_for('home_bp.home'))
 
         except services.UnknownUserException:
             # User name not known to the system, set a suitable error message.
