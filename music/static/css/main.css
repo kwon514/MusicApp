@@ -8,6 +8,21 @@
     right: 0;
     z-index: 100;
 }
+.btn-group a{
+    color: rgb(206, 206, 206);
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Alegreya Sans SC, sans-serif;
+    text-transform: uppercase;
+    padding: 16px 10px;
+    cursor: pointer;
+    float: right;
+}
+
+.btn-group a:hover{
+    color: white;
+    background-color: rgb(26, 26, 26);
+}
 
 #nav {
     width: 240px;
@@ -182,6 +197,7 @@ input[value='Register'] {
     background-color: rgb(24, 24, 24);
     color: rgb(206, 206, 206);
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 input[value='Login'] {
@@ -193,6 +209,7 @@ input[value='Login'] {
     background-color: rgb(24, 24, 24);
     color: rgb(206, 206, 206);
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 input[type='submit']:hover {
@@ -234,6 +251,7 @@ input[type='text'],
         background-color: rgb(24, 24, 24);
         color: rgb(206, 206, 206);
         text-transform: uppercase;
+        cursor: pointer;
     }    
 
 input[type='submit']:hover {
@@ -253,3 +271,5 @@ input[type='submit']:hover {
     margin: 8px 0;
     font-size: 20px;
 }
+
+
