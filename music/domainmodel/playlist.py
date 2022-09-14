@@ -12,10 +12,13 @@ class PlayList:
         return self.__playlist_name
 
     @playlist_name.setter
-    def name(self, playlist_name: str):
+    def playlist_name(self, playlist_name: str):
         self.__playlist_name = None
         if type(playlist_name) is str and playlist_name.strip() != '':
-            self.__playlist_name = playlist_name.strip()    
+            self.__playlist_name = playlist_name.strip()         
+
+    def list_of_tracks(self) -> list[Track]:
+        return self.__list_of_tracks
 
     def size(self):
         size_playlist = len(self.__list_of_tracks)

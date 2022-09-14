@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <playlist id="playlist">
+        <h1 class="title">{{playlist_name}}</h1>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Track Name</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in list_of_tracks %}
+                    <tr>
+                        <td>{{ track.title }}</td>
+                        <td>{{ track.artist.full_name }}</td>
+                        <td>{{ track.album.title }}</td>
+                        <td>{{ track.track_duration }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </playlist>
+{% endblock content %}

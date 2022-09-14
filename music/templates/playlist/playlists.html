@@ -4,7 +4,9 @@
         <h1 class="title">My Playlists</h1>
         <div class = "list-of-playlists">
             {% for playlist in playlists %}
-              <li>{{ playlist.playlist_name }}</li>
+                <div class="playlist_block">
+                    <a class="playlist" href ="{{ url_for('playlist_bp.playlist', playlist_name = playlist.playlist_name)}}">{{ playlist.playlist_name }}</a>
+                </div>
             {% endfor %}
         </div>
     </playlists>

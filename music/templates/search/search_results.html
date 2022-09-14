@@ -18,6 +18,20 @@
                         <td>{{ track.artist.full_name }}</td>
                         <td>{{ track.album.title }}</td>
                         <td>{{ track.track_duration }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <i style="font-size:24px" class="fa">&#xf067;</i>
+                                <div class="dropdown-content">
+                                    {% for playlist in playlists %}
+                                        <div class="content">
+                                            <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}" class="content">
+                                                {{ playlist.playlist_name }}
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

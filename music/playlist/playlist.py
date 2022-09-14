@@ -44,18 +44,32 @@ def get_playlists():
     try:
         playlists = services.get_playlists(user_name, repo.repo_instance)
     except services.UnknownUserException:
-        return redirect(url_for('authentication_bp.login')) 
+        return redirect(url_for('authentication_bp.login'))     
     return render_template('playlist/playlists.html', playlists=playlists)
 
-# @playlist_blueprint.route('/playlist', methods=['GET'])
-# def playlist():
-#     target_track = request.args.get('target_playlist')
-#     if target_playlist == "":
-#         return redirect(url_for('search_bp.search'))
-#     matching_tracks = services.get_tracks(target_track, repo.repo_instance)
-#     if len(matching_tracks) > 0:
-#         return render_template('search/search_results.html', search_by='track', target=target_track, matches=matching_tracks)
-#     return render_template('search/search_tracks.html')
+@playlist_blueprint.route('/playlist/<playlist_name>', methods=['GET'])
+@login_required
+def playlist(playlist_name):
+    user_name = session['user_name']
+    try:
+        playlist = services.get_playlist(playlist_name, user_name, repo.repo_instance)
+        # list_of_tracks = services.get_list_of_tracks(playlist_name, repo.repo_instance)
+    except services.UnknownUserException:
+        return redirect(url_for('authentication_bp.login')) 
+    return render_template('playlist/playlist.html',
+        playlist_name=playlist.playlist_name,
+        list_of_tracks=playlist.list_of_tracks()
+    )
+
+@playlist_blueprint.route('/add_track/<playlist_name>/<int:track_id>', methods=['GET', 'POST'])    
+@login_required
+def add_track(playlist_name, track_id):
+    try:
+        track = services.get_track_by_id(track_id, repo.repo_instance)
+        services.add_track(track, playlist_name, repo.repo_instance)
+    except services.UnknownUserException:
+        return redirect(url_for('authentication_bp.login'))  
+    return redirect(url_for('home_bp.home'))          
 
 class CreatePlaylistForm(FlaskForm):
     playlist_name = StringField('Playlist', [
