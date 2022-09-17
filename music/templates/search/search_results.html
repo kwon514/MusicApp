@@ -14,7 +14,7 @@
             <tbody>
                 {% for track in matches %}
                     <tr>
-                        <td>{{ track.title }}</td>
+                        <td><a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a></td>
                         <td>{{ track.artist.full_name }}</td>
                         <td>{{ track.album.title }}</td>
                         <td>{{ track.track_duration }}</td>
@@ -24,7 +24,8 @@
                                 <div class="dropdown-content">
                                     {% for playlist in playlists %}
                                         <div class="content">
-                                            <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}" class="content">
+                                            <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}"
+                                               class="content">
                                                 {{ playlist.playlist_name }}
                                             </a>
                                         </div>

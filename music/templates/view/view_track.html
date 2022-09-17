@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <main id="track-view">
+        <table id="track-info">
+            <tr>
+                <td>Track</td>
+                <td>{{ track.title }}</td>
+            </tr>
+            <tr>
+                <td>Album</td>
+                <td>{{ track.album.title }}</td>
+            </tr>
+            <tr>
+                <td>Artist</td>
+                <td>{{ track.artist.full_name }}</td>
+            </tr>
+            <tr>
+                <td>Genre(s)</td>
+                <td>{% for genre in track.genres %} {{ genre.name }},  {% endfor %}</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td> {{ track.track_duration }} seconds</td>
+            </tr>
+            {% if track.rating != None %}
+            <tr>
+                <td>Rating</td>
+                <td> {{ track.rating }} / 5 </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td><a href="{{ track.track_url }}">Click here to find out more</a></td>
+            </tr>
+        </table>
+    </main>
+{% endblock content %}

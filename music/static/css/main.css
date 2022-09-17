@@ -191,6 +191,11 @@ td {
     padding: 10px;
 }
 
+td a {
+    text-decoration: none;
+    color: white;
+}
+
 /* REGISTER & LOGIN PAGE */
 #authentication {
     margin: 0 80px;
@@ -314,3 +319,5 @@ input[type='submit']:hover {
     margin: 8px 0;
     font-size: 20px;
 }
+
+/* TRACK PAGE*/
