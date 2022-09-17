@@ -33,4 +33,10 @@ def create_app(test_config=None):
         from .search import search
         app.register_blueprint(search.search_blueprint)
 
+        from .playlist import playlist
+        app.register_blueprint(playlist.playlist_blueprint)
+        
+        from .authentication import authentication
+        app.register_blueprint(authentication.authentication_blueprint)
+
     return app

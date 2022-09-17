@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<create_playlist id="create_playlist">
+    <div class="formwrapper">
+        <h1 class="title">{{ title }}</h1>
+        <form method="POST" action="{{ handler_url }}">
+             {{ form.csrf_token }}
+            <div class="form-field">{{ form.playlist_name.label }} {{ form.playlist_name }}
+                {% if form.playlist_name.errors or playlist_name_error_message is not none %}
+                    <ul class="errors">
+                        {% if playlist_name_error_message is not none %}
+                        <li>
+                            {{ playlist_name_error_message }}
+                        </li>
+                        {% endif %}
+                        {% for error in form.playlist_name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+</create_playlist>
+{% endblock %}

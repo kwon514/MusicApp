@@ -17,3 +17,6 @@ def get_artists(artist_name: str, repo: AbstractRepository):
 
 def get_albums(album_name: str, repo: AbstractRepository):
     return repo.get_tracks_by_album(album_name)
+
+def get_playlists_without_username(repo: AbstractRepository):
+    return repo.get_playlists()       

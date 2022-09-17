@@ -3,6 +3,8 @@ import csv
 from pathlib import Path
 from music.adapters import csvdatareader
 
+from werkzeug.security import generate_password_hash
+
 from music.adapters.csvdatareader import TrackCSVReader
 from music.adapters.repository import AbstractRepository, RepositoryException
 from music.domainmodel.user import User
@@ -60,9 +62,35 @@ class MemoryRepository(AbstractRepository):
                 pass
         return results
 
+    def get_track_by_id(self, track_id: int) -> Track:
+        for track in self.__tracks:
+            if int(track.track_id) == track_id:
+                return track 
+
+    def add_playlist(self, playlist: PlayList):
+        self.__playlists.append(playlist)
+
+    def get_playlist(self, playlist_name) -> PlayList:
+        return next((playlist for playlist in self.__playlists if playlist.playlist_name == playlist_name), None)
+
+    def get_playlists(self) -> List[PlayList]:
+        return self.__playlists    
+
+    def add_track(self, track, playlist_name: str):
+        list_of_tracks = self.get_list_of_tracks(playlist_name)   
+        list_of_tracks.append(track)
+ 
+
+    def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
+        playlist = self.get_playlist(playlist_name)
+        list_of_tracks = playlist.list_of_tracks()     
+        return list_of_tracks
+
+
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))
     file_data.read_csv_files()
     repo.set_track_list(file_data.dataset_of_tracks)
     repo.set_album_list(file_data.dataset_of_albums)
     repo.set_genre_list(file_data.dataset_of_genres)
+

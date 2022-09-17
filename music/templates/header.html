@@ -1,2 +1,14 @@
 <header id="header">
+    <div class="btn-group">
+        {% if 'user_name' in session %}
+            <h2 id="nav-header">
+                {% if 'user_name' in session %}Hello {{ session['user_name'] }}{% endif %}
+            </h2>
+            <a href="{{ url_for('authentication_bp.logout')}}">Logout</a>
+        {% endif %}
+        {% if 'user_name' not in session %}
+            <a href="{{ url_for('authentication_bp.login')}}">Login</a>
+            <a href="{{ url_for('authentication_bp.register')}}">Register</a>
+        {% endif %}
+    </div>
 </header>
