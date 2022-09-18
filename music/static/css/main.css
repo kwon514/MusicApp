@@ -7,8 +7,12 @@
     top: 0;
     right: 0;
     z-index: 100;
+    font-family: Alegreya Sans SC, sans-serif;
+    box-sizing: border-box;
+    padding: 0 20px;
 }
-.btn-group a{
+
+.btn-group a {
     color: rgb(206, 206, 206);
     text-decoration: none;
     font-size: 20px;
@@ -17,14 +21,15 @@
     padding: 16px 10px;
     cursor: pointer;
     float: right;
+    height: 100%;
 }
 
-.btn-group a:hover{
+.btn-group a:hover {
     color: white;
     background-color: rgb(26, 26, 26);
 }
 
-.btn-group h2{
+.btn-group h2 {
     color: rgb(206, 206, 206);
     font-size: 25px;
     margin-top: 0px;
@@ -150,26 +155,26 @@
     text-align: left;
 }
 
-.result-table tbody tr:nth-child(even){
+.result-table tbody tr:nth-child(even) {
     background-color: rgb(46, 46, 46);
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #202020;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-padding: 12px 16px;
-z-index: 1;
 }
 
-.content{
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #202020;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.content {
     color: white;
     text-decoration: none;
     font-size: 16px;
@@ -178,12 +183,13 @@ z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
-display: block;
+    display: block;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
-  }
+}
 
 /* REGISTER & LOGIN PAGE */
 #authentication {
@@ -196,34 +202,34 @@ th, td {
     margin: 60px 0 0 0;
 }
 
-#authentication label{
+#authentication label {
     font-size: 18px;
     font-family: Alegreya Sans SC, sans-serif;
     padding: 3px;
 }
 
 input[type='text'],
-    select {
-        width: 50%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
+select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
 
 input[type='password'],
-    select {
-        width: 50%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
 input[value='Register'] {
     font-size: 22.5px;
@@ -261,35 +267,23 @@ input[type='submit']:hover {
     margin: 0 80px;
 }
 
-#create_playlist label{
+#create_playlist label {
     font-size: 18px;
     font-family: Alegreya Sans SC, sans-serif;
     padding: 3px;
 }
 
-input[type='text'],
-    select {
-        width: 50%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-
-    input[value='Create'] {
-        font-size: 22.5px;
-        font-family: Alegreya Sans SC, sans-serif;
-        text-decoration: none;
-        padding: 12.5px 25px;
-        margin: 0 0 0 5px;
-        background-color: rgb(24, 24, 24);
-        color: rgb(206, 206, 206);
-        text-transform: uppercase;
-        cursor: pointer;
-    }    
+input[value='Create'] {
+    font-size: 22.5px;
+    font-family: Alegreya Sans SC, sans-serif;
+    text-decoration: none;
+    padding: 12.5px 25px;
+    margin: 0 0 0 5px;
+    background-color: rgb(24, 24, 24);
+    color: rgb(206, 206, 206);
+    text-transform: uppercase;
+    cursor: pointer;
+}
 
 input[type='submit']:hover {
     color: white;
@@ -302,11 +296,11 @@ input[type='submit']:hover {
     margin: 0 80px;
 }
 
-.playlist_block{
+.playlist_block {
     padding: 5px 0px;
 }
 
-.playlist{
+.playlist {
     color: white;
     text-decoration: none;
     font-size: 20px;
@@ -314,11 +308,9 @@ input[type='submit']:hover {
     padding: 10px 0px;
 }
 
-.list-of-playlists{
+.list-of-playlists {
     width: 50%;
     padding: 12px 0px;
     margin: 8px 0;
     font-size: 20px;
 }
-
-
