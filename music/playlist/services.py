@@ -51,13 +51,6 @@ def get_playlist_without_username(playlist_name: str, repo: AbstractRepository):
     playlist = repo.get_playlist(playlist_name)
     return playlist    
 
-# def playlist_to_dict(playlist: PlayList):
-#     playlist_dict = {
-#         'playlist_name': playlist.playlist_name,
-#         'list_of_tracks': playlist.list_of_tracks()
-#     }
-#     return playlist_dict
-
 def add_track(track: Track, playlist_name: str, repo: AbstractRepository):
     repo.add_track(track, playlist_name)
 

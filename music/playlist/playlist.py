@@ -69,7 +69,7 @@ def add_track(playlist_name, track_id):
         services.add_track(track, playlist_name, repo.repo_instance)
     except services.UnknownUserException:
         return redirect(url_for('authentication_bp.login'))  
-    return redirect(url_for('home_bp.home'))          
+    return redirect(request.referrer)          
 
 class CreatePlaylistForm(FlaskForm):
     playlist_name = StringField('Playlist', [

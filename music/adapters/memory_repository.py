@@ -62,6 +62,18 @@ class MemoryRepository(AbstractRepository):
                 pass
         return results
 
+    def get_tracks_by_genre(self, genre_name: str) -> List[Track]:
+        results = []
+        for track in self.__tracks:
+            try:
+                for genre in track.genres:
+                    if genre.name.lower()[0:len(genre_name)] == genre_name.strip().lower()[0:len(genre_name)]:
+                        results.append(track)
+            except AttributeError:
+                pass
+        return results            
+
+
     def get_track_by_id(self, track_id: int) -> Track:
         for track in self.__tracks:
             if int(track.track_id) == track_id:

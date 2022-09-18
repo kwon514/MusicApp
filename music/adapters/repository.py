@@ -40,6 +40,10 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_tracks_by_genre(self, genre_name: str) -> List[Track]:
+        raise NotImplementedError    
+
+    @abc.abstractmethod
     def add_playlist(self, playlist: PlayList):
         raise NotImplementedError
 
