@@ -155,8 +155,8 @@
     text-align: left;
 }
 
-.result-table tbody tr:nth-child(even) {
-    background-color: rgb(46, 46, 46);
+.result-table tbody tr:hover {
+    background-color: rgb(26, 26, 26);
 }
 
 .dropdown {
@@ -321,3 +321,36 @@ input[type='submit']:hover {
 }
 
 /* TRACK PAGE*/
+
+#review-div {
+    margin: 40px 0px;
+    display: block;
+} 
+
+#rating {
+    width: 50px;
+    padding: 5px 8px;
+    margin: 0;
+}
+
+#review_input {
+    display: block;
+    height: 100px;
+    width: 650px;
+    resize: none;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.indiv-review {
+    display: block;
+    background-color: rgb(24, 24, 24);
+    margin: 10px 0;
+    padding: 2px;
+}
+
+.indiv-review p {
+    margin: 0;
+    padding: 5px;
+}
