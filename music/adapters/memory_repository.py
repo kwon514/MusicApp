@@ -91,7 +91,6 @@ class MemoryRepository(AbstractRepository):
         list_of_tracks = playlist.list_of_tracks()     
         return list_of_tracks
 
-
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))
     file_data.read_csv_files()
@@ -99,3 +98,4 @@ def populate(data_path: Path, repo: MemoryRepository):
     repo.set_album_list(file_data.dataset_of_albums)
     repo.set_genre_list(file_data.dataset_of_genres)
 
+   
