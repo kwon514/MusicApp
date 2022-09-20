@@ -5,10 +5,16 @@ from music.domainmodel.track import Track
 class User:
 
     def __init__(self, user_name: str, password: str,  user_id: int = None):
-        self.__user_id = user_id
+        if user_id is not None:
+            if type(user_id) is not int or user_id < 0:
+                raise ValueError("User ID should be a non negative integer.")
+            else:
+                self.__user_id = user_id
+        else:
+            self.__user_id = user_id         
 
         if type(user_name) is str:
-            self.__user_name = user_name
+            self.__user_name = user_name.strip()
         else:
             self.__user_name = None
 

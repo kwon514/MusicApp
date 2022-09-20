@@ -19,6 +19,9 @@ def search_artists():
 def search_albums():
     return render_template('search/search_albums.html')
 
+@search_blueprint.route('/search_genres', methods=['GET'])
+def search_genres():
+    return render_template('search/search_genres.html')
 
 @search_blueprint.route('/search_tracks_result', methods=['GET'])
 def search_tracks_result():
@@ -52,3 +55,14 @@ def search_albums_result():
     if len(matching_albums) > 0:
         return render_template('search/search_results.html', search_by='album', target=target_album, matches=matching_albums, playlists=playlists)
     return render_template('search/search_albums.html')
+
+@search_blueprint.route('/search_genres_result', methods=['GET'])
+def search_genres_result():
+    target_genre = request.args.get('target_genre')
+    if target_genre == "":
+        return redirect(url_for('search_bp.search'))
+    matching_genres = services.get_genres(target_genre, repo.repo_instance)
+    playlists = services.get_playlists_without_username(repo.repo_instance)
+    if len(matching_genres) > 0:
+        return render_template('search/search_results.html', search_by='track', target=target_genre, matches=matching_genres, playlists=playlists)
+    return render_template('search/search_genres.html')
