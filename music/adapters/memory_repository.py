@@ -33,6 +33,12 @@ class MemoryRepository(AbstractRepository):
     def get_user(self, user_name) -> User:
         return next((user for user in self.__users if user.user_name == user_name), None)
 
+    def add_review(self, review: Review):
+        self.__reviews.append(review)
+        
+    def get_reviews_by_track(self, track: Track) -> List[Review]:
+        return [review for review in self.__reviews if review.track == track]
+
     def set_track_list(self, track_list: list):
         self.__tracks += track_list
 
@@ -52,7 +58,6 @@ class MemoryRepository(AbstractRepository):
         return [track for track in self.__tracks if track.artist.full_name.lower()[0:len(track_artist)] == track_artist.strip().lower()[0:len(track_artist)]]
 
     def get_tracks_by_album(self, album_name: str) -> List[Track]:
-        #return [track for track in self.__tracks if track.album.title.lower()[0:len(album_name)] == album_name.strip().lower()[0:len(album_name)]]
         results = []
         for track in self.__tracks:
             try:
@@ -98,7 +103,6 @@ class MemoryRepository(AbstractRepository):
         list_of_tracks = playlist.list_of_tracks()     
         return list_of_tracks
 
-
 def populate(data_path: Path, repo: MemoryRepository):
     file_data = TrackCSVReader(str(Path(data_path) / 'raw_albums_excerpt.csv'), str(Path(data_path) / 'raw_tracks_excerpt.csv'))
     file_data.read_csv_files()
@@ -106,3 +110,4 @@ def populate(data_path: Path, repo: MemoryRepository):
     repo.set_album_list(file_data.dataset_of_albums)
     repo.set_genre_list(file_data.dataset_of_genres)
 
+   

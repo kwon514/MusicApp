@@ -28,6 +28,34 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def add_review(self, review: Review):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def get_reviews_by_track(self, track: Track) -> List[Review]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def set_track_list(self, track_list: list):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
+    def set_track_list(self, track_list: list):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def set_album_list(self, album_list: list):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def set_artist_list(self, artist_list: list):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def set_genre_list(self, genre_list: list):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_tracks_by_title(self, track_title: str) -> List[Track]:
         raise NotImplementedError
 
@@ -42,6 +70,10 @@ class AbstractRepository(abc.ABC):
     @abc.abstractmethod
     def get_tracks_by_genre(self, genre_name: str) -> List[Track]:
         raise NotImplementedError    
+
+    @abc.abstractmethod
+    def get_track_by_id(self, track_id: int) -> Track:
+        raise NotImplementedError
 
     @abc.abstractmethod
     def add_playlist(self, playlist: PlayList):
@@ -60,9 +92,6 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_track_by_id(self, track_id: int) -> Track:
-        raise NotImplementedError      
-
-    @abc.abstractmethod
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
-        raise NotImplementedError        
+        raise NotImplementedError
+

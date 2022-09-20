@@ -27,7 +27,7 @@ def search_genres():
 def search_tracks_result():
     target_track = request.args.get('target_track')
     if target_track == "":
-        return redirect(url_for('search_bp.search'))
+        return redirect(url_for('search_bp.search_tracks'))
     matching_tracks = services.get_tracks(target_track, repo.repo_instance)
     playlists = services.get_playlists_without_username(repo.repo_instance)
     if len(matching_tracks) > 0:
