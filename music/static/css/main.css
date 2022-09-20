@@ -322,8 +322,12 @@ input[type='submit']:hover {
 
 /* TRACK PAGE*/
 
+#track-view {
+    margin: 40px 0;
+}
+
 #review-div {
-    margin: 40px 0px;
+    margin: 50px 0 0 0;
     display: block;
 } 
 
@@ -343,14 +347,32 @@ input[type='submit']:hover {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#review-display {
+    margin: 30px 0;
+}
+
 .indiv-review {
     display: block;
     background-color: rgb(24, 24, 24);
     margin: 10px 0;
-    padding: 2px;
+    padding: 5px;
+    width: 1000px;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .indiv-review p {
     margin: 0;
     padding: 5px;
+}
+
+.subheader {
+    font-family: Alegreya Sans SC, sans-serif;
+    font-size: 35px;
+    text-transform: uppercase;
+    margin: 5px;
+}
+
+.right-align {
+    float: right;
 }

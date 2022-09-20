@@ -1,11 +1,8 @@
 {% extends 'layout.html' %}
 {% block content %}
     <main id="track-view">
+        <h2 class="subheader">{{ track.title }}</h2>
         <table id="track-info">
-            <tr>
-                <td>Track</td>
-                <td>{{ track.title }}</td>
-            </tr>
             <tr>
                 <td>Album</td>
                 <td>{{ track.album.title }}</td>
@@ -37,6 +34,8 @@
             </tr>
         </table>
         <div id="review-div">
+            <h2 class="subheader">Reviews</h2>
+            {% if 'user_name' in session %}
             <div class="formwrapper">
                 <form method="POST" action="{{ handler_url }}">
                     Rating: {{ review_form.rating }} (out of 5)
@@ -44,9 +43,14 @@
                     {{ review_form.submit }}
                 </form>
             </div>
+            {% endif %}
+            {% if 'user_name' not in session %}
+                <p>Please <a href="{{ url_for('authentication_bp.login')}}">log in</a> to leave a review.</p>
+            {% endif %}
             <div id="review-display">
                 {% for review in reviews %}
                     <div class="indiv-review">
+                        <p class="right-align">{{ review.timestamp.strftime("%I:%M%p - %d/%m/%y") }}</p>
                         <p>Rating: {{ review.rating }}/5</p>
                         <p>{{ review.review_text }}</p>
                     </div>

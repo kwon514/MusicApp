@@ -23,6 +23,7 @@ def view_track():
         services.add_review(review, repo.repo_instance)
         return redirect(url_for('view_bp.view_track', track_id=track_id))
     reviews = services.get_review(track, repo.repo_instance)
+    reviews.reverse()
     return render_template('view/view_track.html', track=track, review_form=review_form, reviews=reviews)
 
 class ReviewForm(FlaskForm):
