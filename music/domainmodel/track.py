@@ -19,6 +19,7 @@ class Track:
         # duration in seconds
         self.__track_duration: int | None = None
         self.__genres: list = []
+        self.__rating = None
 
     @property
     def track_id(self) -> int:
@@ -83,6 +84,10 @@ class Track:
     def genres(self) -> list:
         return self.__genres
 
+    @property
+    def rating(self) -> int:
+        return self.__rating
+    
     def add_genre(self, new_genre):
         if not isinstance(new_genre, Genre) or new_genre in self.__genres:
             return
