@@ -20,35 +20,28 @@ class TestArtist:
         artist3 = Artist(3, 'Kate Bush')
         assert str(artist3) == '<Artist Kate Bush, artist id = 3>'
 
-        # Test full_name with trailing spaces
         artist4 = Artist(4, ' Bad Bunny ')
         assert str(artist4) == '<Artist Bad Bunny, artist id = 4>'
 
-        # Test when the id is None
         with pytest.raises(ValueError):
             Artist(None, 'Harry Styles')
 
-        # Test when the id is negative
         with pytest.raises(ValueError):
             Artist(-3, 'Harry Styles')
 
-        # Test when the artist fullname type is invalid
         artist5 = Artist(5, 2910)
         assert artist5.full_name is None
 
     def test_setters(self):
         artist1 = Artist(1, 'Tailor Swift')
 
-        # Test full_name setter
         artist1.full_name = '  Tailor Fixed  '
         assert artist1.full_name == 'Tailor Fixed'
         assert str(artist1) == '<Artist Tailor Fixed, artist id = 1>'
 
-        # Test invalid type for the full_name sets it to None
         artist1.full_name = 32
         assert artist1.full_name is None
 
-        # Artist full_name is set to None if we tried to assign invalid values
         assert artist1.full_name is None
 
     def test_equality(self):
@@ -57,18 +50,15 @@ class TestArtist:
         artist3 = Artist(3, 'Kate Bush')
         artist3_copy = Artist(3, 'Kate Bush')
 
-        # Check equality of the same artists
         assert artist1 == artist1
         assert artist2 == artist2
         assert artist3 == artist3
         assert artist3 == artist3_copy
 
-        # Check inequality of different artists
         assert artist1 != artist2
         assert artist1 != artist3
         assert artist2 != artist3
 
-        # Check equality with different types
         assert artist1 != 'Tailor Swift'
         assert artist1 is not None
 
@@ -77,12 +67,10 @@ class TestArtist:
         artist2 = Artist(5, "Maroon 5")
         artist3 = Artist(8, 'Kate Bush')
 
-        # Basic inequality comparison
         assert artist1 < artist2
         assert artist2 < artist3
         assert artist3 > artist1
 
-        # Test actual sorting of the list of artists
         artist_list = [artist3, artist2, artist1]
         assert sorted(artist_list) == [artist1, artist2, artist3]
 
@@ -92,14 +80,12 @@ class TestArtist:
         artist3 = Artist(8, 'Kate Bush')
 
         artist_set = set()
-        # Test addition
         artist_set.add(artist1)
         artist_set.add(artist2)
         artist_set.add(artist3)
 
         assert sorted(artist_set) == [artist1, artist2, artist3]
 
-        # Test removal
         artist_set.discard(artist1)
         assert sorted(artist_set) == [artist2, artist3]
 
@@ -113,15 +99,12 @@ class TestGenre:
         assert str(genre1) == '<Genre Jazz, genre id = 1>'
         assert str(genre2) == '<Genre Electronic, genre id = 2>'
 
-        # Test invalid id raises error
         with pytest.raises(ValueError):
             Genre('abc', 'Chill')
 
-        # Test invalid id raises error
         with pytest.raises(ValueError):
             Genre(-30, 'Chill')
 
-        # Construct with invalid name type sets it to None
         genre3 = Genre(3, 300)
         assert genre3.name is None
 
@@ -133,11 +116,9 @@ class TestGenre:
         genre1.name = 'New Jazz'
         assert genre1.name == 'New Jazz'
 
-        # Invalid type assignment sets name to None
         genre1.name = 100
         assert genre1.name is None
 
-        # Empty string assignment sets name to None
         genre1.name = ''
         assert genre1.name is None
 
@@ -191,15 +172,12 @@ class TestAlbum:
         assert str(album1) == '<Album Justice, album id = 15>'
         assert str(album2) == '<Album Planet Her, album id = 20>'
 
-        # Test no id raises error
         with pytest.raises(ValueError):
             Album(None, 'Fine Line')
 
-        # Test negative value of id raises error
         with pytest.raises(ValueError):
             Album(-3, 'Fine Line')
 
-        # Test album title of wrong type sets title to None
         album3 = Album(3, 300)
         assert str(album3) == '<Album None, album id = 3>'
 
@@ -212,7 +190,6 @@ class TestAlbum:
         with pytest.raises(AttributeError):
             album1.album_id = 2910
 
-        # Test title getter & setter
         album1.title = ' Broken justice  '
         assert album1.title == 'Broken justice'
 
@@ -221,21 +198,18 @@ class TestAlbum:
         album1.title = ''
         assert album1.title is None
 
-        # Test album_url getter & setter
         album1.album_url = ' https://spotify/albums/15 '
         assert album1.album_url == 'https://spotify/albums/15'
 
         album1.album_url = float('inf')
         assert album1.album_url is None
 
-        # Test album_type getter & setter
         album1.album_type = '  Live Performance '
         assert album1.album_type == 'Live Performance'
 
         album1.album_type = -10
         assert album1.album_type is None
 
-        # Test release_year getter & setter
         album1.release_year = 2018
         assert album1.release_year == 2018
 
@@ -259,7 +233,6 @@ class TestAlbum:
         assert album1 != album2
         assert album1 != album3
 
-        # Test changing the attribute does not affect the equality
         album1_copy.title = 'Something else'
         album1_copy.album_url = 'https://spotify/albums/2'
         assert album1 == album1_copy
@@ -303,46 +276,36 @@ class TestTrack:
         assert str(track2) == '<Track Heat Waves, track id = 2>'
         assert str(track3) == '<Track Tarot, track id = 3>'
 
-        # Test if id of wrong type raises error
         with pytest.raises(ValueError):
             Track(None, 'Te Felicito')
 
-        # Test negative value of id raises error
         with pytest.raises(ValueError):
             Track(-1, 'Te Felicito')
 
-        # Setting title of wrong type sets title to None
         track4 = Track(5, 32)
         assert track4.title is None
 
     def test_attributes(self):
         track1 = Track(1, 'Shivers')
 
-        # Test title setter
         track1.title = 'Fixed Shivers'
         assert track1.title == 'Fixed Shivers'
 
-        # Title with trailing spaces
         track1.title = '  Fixed Shivers2   '
         assert track1.title == 'Fixed Shivers2'
 
-        # Test tracK_url
         track1.track_url = ' https://spotify/track/1 '
         assert track1.track_url == 'https://spotify/track/1'
 
-        # Test track duration
         track1.track_duration = 300
         assert track1.track_duration == 300
 
         artist = Artist(31, 'Justin Bieber')
-        # Test artist attribute
         track1.artist = artist
         assert track1.artist == artist
 
-        # Test album attribute
         album = Album(9289, 'Release Radar')
 
-        # Assigning correct album type sets the attribute successfully
         track1.album = album
         assert track1.album == album
 
@@ -350,13 +313,8 @@ class TestTrack:
         track1 = Track(1, 'Shivers')
         track2 = Track(2, 'Heat Waves')
 
-        # Test trying to assign wrong types to track_url
         track1.track_url = 23
-
-        # Assigning wrong types should set track_url = None
         assert track1.track_url is None
-
-        # Test invalid type for title setter sets title to None
         track1.title = 1256
         assert track1.title is None
 
@@ -371,14 +329,11 @@ class TestTrack:
 
         assert track1.track_duration is None
         assert track2.track_duration is None
-
-        # Assigning artist of invalid type does not make change
         track1.artist = 3235
         track2.artist = 'invalid artist'
         assert track1.artist is None
         assert track2.artist is None
 
-        # Assigning invalid types sets the attribute to None
         track1.album = 1983
         track2.album = 'Invalid album'
         assert track1.album is None
@@ -461,10 +416,8 @@ class TestReview:
         with pytest.raises(ValueError):
             Review(track1, 'Text', 'rating')
 
-        # Negative value of comment raises error
         with pytest.raises(ValueError):
             Review(track1, 'Text', -5)
-        # Rating value > 5 raises error
         with pytest.raises(ValueError):
             Review(track1, 'Text', 10)
 
@@ -474,11 +427,9 @@ class TestReview:
 
         assert review1.track == track1
 
-        # Test review_text getter & setter
         review1.review_text = '  Fixed review '
         assert review1.review_text == 'Fixed review'
 
-        # Test rating getter & setter
         review1.rating = 5
         assert review1.rating == 5
 
@@ -523,38 +474,30 @@ class TestUser:
         assert str(user1) == '<User amotys, user id = 7231>'
         assert str(user2) == '<User yunwi5, user id = 9137>'
 
-        # Invalid ID type raises error
         with pytest.raises(ValueError):
             User('invalid id', 'pedri', 'pedri1928')
 
-        # ID less than 0 raises error
         with pytest.raises(ValueError):
             User('peri', 'pedri1928', -10)
 
-        # Test user_name is all lowercase
         user3 = User(' GAVI ', 'gavi1928', 3829)
         assert user3.user_name == 'GAVI'
 
-        # Invalid user_name type sets user_name to None
         user4 = User(93485, 8190, 1259)
         assert user4.user_name is None
 
-        # Invalid password type set password to None
         user5 = User('Memphis', 325, 6737)
         assert user5.password is None
 
         user5 = User('Memphis', '', 9821)
         assert user5.password is None
 
-        # Password length < 7 sets password to None
         user5 = User('memphis', 'mempi', 6878)
         assert user5.password is None
 
-        # Password of length 7 sets the password correctly
         user6 = User('Memphis', 'mempi12', 2918)
         assert user6.password == 'mempi12'
 
-    # User class has getters for each attribute, but no setters.
     def test_attributes(self):
         user1 = User('    ', 'amotys277', 7231)
         assert user1.user_id == 7231
@@ -583,7 +526,6 @@ class TestUser:
         assert user1 != user2
         assert user2 != user3
 
-        # Check equality with different types
         track1 = Track(2231, 'Chill with me')
         assert user1 != track1
         assert user1 != 'some user'
@@ -612,16 +554,13 @@ class TestUser:
         user_set.add(user2)
         user_set.add(user3)
 
-        # Test all users were added to the set
         assert sorted(user_set) == [user1, user2, user3]
 
-        # Test users are successfully removed from the set.
         user_set.discard(user1)
         user_set.discard(user2)
         assert list(user_set) == [user3]
 
     def test_track_methods(self):
-        """ Test add_liked_track() and remove_liked_track() methods """
         user1 = User('pedri', 'pedri9281', 7232)
         track1 = Track(1, 'Shivers')
         track2 = Track(2, 'Heat Waves')
@@ -637,7 +576,6 @@ class TestUser:
         assert len(user1.liked_tracks) == 3
 
     def test_review_methods(self):
-        """ Test add_review() and remove_review() methods """
         user1 = User('gavi', 'gavi9281', 7232)
         track1 = Track(2, 'Heat Waves')
         review1 = Review(track1, 'review 1', 2)
@@ -651,11 +589,9 @@ class TestUser:
         user1.add_review(review3)
         assert user1.reviews == [review1, review2, review3]
 
-        # Test it does not add the same review twice
         user1.add_review(review1)
         assert len(user1.reviews) == 3
 
-        # Test it does not add review of invalid types
         user1.add_review(300)
         user1.add_review('review')
         user1.add_review(None)
@@ -665,7 +601,6 @@ class TestUser:
         user1.remove_review(review1)
         assert user1.reviews == [review3]
 
-        # Test removing non-existing review does nothing
         user1.remove_review(review2)
         assert user1.reviews == [review3]
 
@@ -699,7 +634,6 @@ class TestCSVReader:
         tracks = reader.dataset_of_tracks
 
         sorted_tracks = sorted(tracks)
-        # Test there are total 10 unique tracks in the test dataset.
         assert len(sorted_tracks) == 2000
 
         sorted_tracks_str = str(sorted_tracks[:3])
@@ -715,7 +649,6 @@ class TestCSVReader:
         albums_set = reader.dataset_of_albums
         sorted_albums = sorted(albums_set)
 
-        # Test there are total 427 unique albums in the test dataset.
         assert len(sorted_albums) == 427
 
         sorted_albums_sample = str(sorted_albums[:3])
@@ -726,7 +659,6 @@ class TestCSVReader:
         artists_set = reader.dataset_of_artists
         sorted_artists = sorted(artists_set)
 
-        # Test there are total 5 unique artists in the test dataset.
         assert len(sorted_artists) == 263
 
         sorted_artists_sample = str(sorted_artists[:3])
@@ -738,10 +670,7 @@ class TestCSVReader:
 
         sorted_genres = sorted(genres_set)
 
-        # Test there are total 7 unique genres in the test dataset.
         assert len(sorted_genres) == 60
 
-        # Expected output: '[<Genre Avant-Garde, genre id = 1>, <Genre International, genre id = 2>, <Genre Blues,
-        # genre id = 3>]'
         sorted_genre_sample = str(sorted_genres[:3])
         assert sorted_genre_sample == '[<Genre Avant-Garde, genre id = 1>, <Genre International, genre id = 2>, <Genre Blues, genre id = 3>]'
