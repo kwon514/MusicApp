@@ -6,6 +6,7 @@ from flask import Flask, render_template
 import music.adapters.repository as repo
 from music.adapters.memory_repository import MemoryRepository, populate
 
+
 def create_app(test_config=None):
     # Create the Flask app object.
     app = Flask(__name__)
@@ -33,9 +34,12 @@ def create_app(test_config=None):
         from .search import search
         app.register_blueprint(search.search_blueprint)
 
+        from .view import view
+        app.register_blueprint(view.view_blueprint)
+
         from .playlist import playlist
         app.register_blueprint(playlist.playlist_blueprint)
-        
+
         from .authentication import authentication
         app.register_blueprint(authentication.authentication_blueprint)
 
