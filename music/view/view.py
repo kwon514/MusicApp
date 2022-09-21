@@ -4,7 +4,7 @@ import music.adapters.repository as repo
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, SelectField
-from wtforms.validators import DataRequired, Length, ValidationError
+from wtforms.validators import DataRequired, Length
 from music.domainmodel.review import Review
 
 
@@ -27,6 +27,6 @@ def view_track():
     return render_template('view/view_track.html', track=track, review_form=review_form, reviews=reviews)
 
 class ReviewForm(FlaskForm):
-    review_input = TextAreaField('Review', [DataRequired(message="Please enter a review"), Length(min=1, max=1000)])
+    review_input = TextAreaField('Review', [DataRequired(), Length(min=1, max=1000)])
     rating = SelectField('Rating', choices=[1, 2, 3, 4, 5], coerce=int)
     submit = SubmitField('Submit') 

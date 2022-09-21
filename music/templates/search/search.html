@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <main id="search">
+        <h1 class="title">Search</h1>
+        <form method="POST" action="{{ handler_url }}">
+            {{ search_form.query(placeholder="What are you looking for?") }}
+            {{ search_form.search_by }}
+            {{ search_form.submit(class="btn") }}
+        </form>
+    </main>
+{% endblock content %}

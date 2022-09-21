@@ -2,11 +2,13 @@
 
 {% block content %}
 <create_playlist id="create_playlist">
+    <h1 class="title">{{ title }}</h1>
     <div class="formwrapper">
-        <h1 class="title">{{ title }}</h1>
         <form method="POST" action="{{ handler_url }}">
              {{ form.csrf_token }}
-            <div class="form-field">{{ form.playlist_name.label }} {{ form.playlist_name }}
+            <div class="form-field">
+                {{ form.playlist_name(placeholder="Enter a playlist name...") }}
+                {{ form.submit(class="btn") }}
                 {% if form.playlist_name.errors or playlist_name_error_message is not none %}
                     <ul class="errors">
                         {% if playlist_name_error_message is not none %}
@@ -20,7 +22,6 @@
                     </ul>
                 {% endif %}
             </div>
-            {{ form.submit }}
         </form>
     </div>
 </create_playlist>
