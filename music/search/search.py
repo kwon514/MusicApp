@@ -40,7 +40,6 @@ def search_results():
         # This should never happen.
         return redirect(url_for('search_bp.search'))
 
-    playlists = services.get_playlists_without_username(repo.repo_instance)
     return render_template('search/search_results.html', query=query, search_by=search_by, results=results, playlists=playlists)
 
 

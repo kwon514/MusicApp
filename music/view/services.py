@@ -17,3 +17,6 @@ def add_review(review: Review, repo: AbstractRepository):
 
 def get_review(track: Track, repo: AbstractRepository):
     return repo.get_reviews_by_track(track)
+
+def get_playlists_without_username(repo: AbstractRepository):
+    return repo.get_playlists()

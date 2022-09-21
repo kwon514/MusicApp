@@ -27,25 +27,43 @@
                     <td>{{ track.rating }} / 5</td>
                 </tr>
             {% endif %}
-            <tr>
-                <td>
-                    <a href="{{ track.track_url }}">Click here to view the track on Free Music Archive</a>
-                </td>
-            </tr>
         </table>
+        <p class="margin-left">
+            Click <a href="{{ track.track_url }}">here</a> to view the track on Free Music Archive.
+        </p>
+        <div class="dropdown">
+            <i style="font-size:22px" class="fa">&#xf067;</i>
+            <span class="text"><b>ADD TO PLAYLIST</b></span>
+            <div class="dropdown-content">
+                {% if playlists|length == 0 %}
+                    <p>You have no playlists.</p>
+                {% endif %}
+                {% for playlist in playlists %}
+                    <div class="content">
+                        <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}"
+                           class="content">
+                            {{ playlist.playlist_name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
         <div id="review-div">
             <h2 class="subheader">Reviews</h2>
             {% if 'user_name' in session %}
-            <div class="formwrapper">
-                <form method="POST" action="{{ handler_url }}">
-                    Rating: {{ review_form.rating }} (out of 5)
-                    {{ review_form.review_input(placeholder="Enter your review here...") }}
-                    {{ review_form.submit }}
-                </form>
-            </div>
+                <div class="formwrapper">
+                    <form method="POST" action="{{ handler_url }}">
+                        Rating: {{ review_form.rating }} (out of 5)
+                        {{ review_form.review_input(placeholder="Enter your review here...") }}
+                        {{ review_form.submit }}
+                    </form>
+                </div>
             {% endif %}
             {% if 'user_name' not in session %}
-                <p>Please <a href="{{ url_for('authentication_bp.login')}}">log in</a> to leave a review.</p>
+                <p class="margin-left">
+                    Please <a href="{{ url_for('authentication_bp.login')}}">log in</a> to leave a review.
+                </p>
             {% endif %}
             <div id="review-display">
                 {% for review in reviews %}
