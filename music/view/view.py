@@ -18,7 +18,7 @@ def view_track():
     track = services.get_track_by_id(int(track_id), repo.repo_instance)
     
     review_form = ReviewForm()
-    if review_form.is_submitted():
+    if review_form.validate_on_submit():
         review = Review(track, review_form.review_input.data, review_form.rating.data)
         services.add_review(review, repo.repo_instance)
         return redirect(url_for('view_bp.view_track', track_id=track_id))

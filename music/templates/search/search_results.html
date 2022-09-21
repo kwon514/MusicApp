@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <main id="search">
-        <h1 class="header-text">Results matching '{{ target }}'</h1>
+        <h1 class="header-text">Results matching '{{ query }}'</h1>
         <table class="result-table">
             <thead>
                 <tr>
@@ -12,11 +12,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% for track in matches %}
+                {% for track in results %}
                     <tr>
                         <td><a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a></td>
-                        <td><a href="{{ url_for('search_bp.search_artists_result', target_artist=track.artist.full_name) }}">{{ track.artist.full_name }}</a></td>
-                        <td><a href="{{url_for('search_bp.search_albums_result', target_album=track.album.title) }}">{{ track.album.title }}</a></td>
+                        <td><a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a></td>
+                        <td><a href="{{url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a></td>
                         <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
                         <td>
                             <div class="dropdown">
