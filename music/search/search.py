@@ -5,6 +5,8 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
+
+
 search_blueprint = Blueprint(
     'search_bp', __name__)
 
@@ -43,7 +45,7 @@ def search_results():
 
 
 class SearchForm(FlaskForm):
-    query = StringField('Search', validators=[DataRequired()])
+    query = StringField('Search', [DataRequired()])
     search_by = SelectField(
         'Rating', choices=[("track", "Track"), ("artist", "Artist"), ("album", "Album"), ("genre", "Genre")], coerce=str)
     submit = SubmitField('Search')

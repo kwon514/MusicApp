@@ -14,10 +14,10 @@
             <tbody>
                 {% for track in list_of_tracks %}
                     <tr>
-                        <td>{{ track.title }}</td>
-                        <td>{{ track.artist.full_name }}</td>
-                        <td>{{ track.album.title }}</td>
-                        <td>{{ track.track_duration }}</td>
+                        <td><a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a></td>
+                        <td><a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a></td>
+                        <td><a href="{{ url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a></td>
+                        <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
