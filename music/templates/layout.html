@@ -4,11 +4,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Music</title>
         <link rel="stylesheet"
+              type="text/css"
+              href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+        <link rel="stylesheet"
               href="{{ url_for('static', filename='css/main.css') }}"/>
         <link rel="icon" href="/static/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap"
               rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div id="body">
@@ -21,6 +25,9 @@
                 {% block content %}
                 {% endblock content %}
             </div>
+            <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+            {% block scripts %}{% endblock %}
         </div>
     </body>
 </html>

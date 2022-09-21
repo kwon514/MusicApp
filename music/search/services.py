@@ -20,6 +20,3 @@ def get_albums(album_name: str, repo: AbstractRepository):
 
 def get_genres(genre_name: str, repo: AbstractRepository):
     return repo.get_tracks_by_genre(genre_name)    
-
-def get_playlists_without_username(repo: AbstractRepository):
-    return repo.get_playlists()       
