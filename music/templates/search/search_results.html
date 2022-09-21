@@ -12,29 +12,41 @@
                 </tr>
             </thead>
             <tbody>
-                {% for track in results %}
+                {% if results|length == 0 %}
                     <tr>
-                        <td><a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a></td>
-                        <td><a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a></td>
-                        <td><a href="{{ url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a></td>
-                        <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <i style="font-size:24px" class="fa">&#xf067;</i>
-                                <div class="dropdown-content">
-                                    {% for playlist in playlists %}
-                                        <div class="content">
-                                            <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}"
-                                               class="content">
-                                                {{ playlist.playlist_name }}
-                                            </a>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </td>
+                        <td colspan="4">No results found.</td>
                     </tr>
-                {% endfor %}
+                {% elif results|length > 0 %}
+                    {% for track in results %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a>
+                            </td>
+                            <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <i style="font-size:24px" class="fa">&#xf067;</i>
+                                    <div class="dropdown-content">
+                                        {% for playlist in playlists %}
+                                            <div class="content">
+                                                <a href = "{{ url_for('playlist_bp.add_track', playlist_name = playlist.playlist_name, track_id = track.track_id) }}"
+                                                   class="content">
+                                                    {{ playlist.playlist_name }}
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             </tbody>
         </table>
     </main>
