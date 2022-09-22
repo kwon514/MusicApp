@@ -39,8 +39,7 @@ def add_playlist(playlist_name: str, user_name: str, repo: AbstractRepository):
     user = repo.get_user(user_name)
     if user is None:
         raise UnknownUserException
-    playlist = PlayList(playlist_name, user)
-    repo.add_playlist(playlist)
+    repo.add_playlist(playlist_name, user)
 
 
 def get_playlist(playlist_name: str, user_name: str, repo: AbstractRepository):
@@ -74,7 +73,6 @@ def create_playlist_from_list(playlist_name: str, list_of_tracks: List[Track], u
     if playlist is not None:
         raise PlaylistNotUniqueException
     user = repo.get_user(user_name)
-    playlist = PlayList(playlist_copy_name, user)
-    repo.add_playlist(playlist)
+    repo.add_playlist(playlist_copy_name, user)
     for track in list_of_tracks:
         repo.add_track(track, playlist_copy_name)
