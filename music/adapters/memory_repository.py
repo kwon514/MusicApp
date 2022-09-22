@@ -86,7 +86,8 @@ class MemoryRepository(AbstractRepository):
             if int(track.track_id) == track_id:
                 return track 
 
-    def add_playlist(self, playlist: PlayList):
+    def add_playlist(self, playlist_name: str, user: User):
+        playlist = PlayList(playlist_name, user)
         self.__playlists.append(playlist)
 
     def get_playlist(self, playlist_name) -> PlayList:
