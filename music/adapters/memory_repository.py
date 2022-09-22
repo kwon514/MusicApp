@@ -78,7 +78,6 @@ class MemoryRepository(AbstractRepository):
                 pass
         return results            
 
-
     def get_track_by_id(self, track_id: int) -> Track:
         for track in self.__tracks:
             if int(track.track_id) == track_id:
@@ -97,7 +96,6 @@ class MemoryRepository(AbstractRepository):
         list_of_tracks = self.get_list_of_tracks(playlist_name)   
         list_of_tracks.append(track)
  
-
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         playlist = self.get_playlist(playlist_name)
         list_of_tracks = playlist.list_of_tracks()     
