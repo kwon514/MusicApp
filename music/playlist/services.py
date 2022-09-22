@@ -26,18 +26,16 @@ def get_playlists(user_name: str,repo: AbstractRepository):
     user = repo.get_user(user_name)
     if user is None:
         raise UnknownUserException
-    return repo.get_playlists()
+    return repo.get_playlists(user)
 
 def add_playlist(playlist_name: str, user_name: str, repo: AbstractRepository):    
-    # Check that the given user name is available.
     playlist = repo.get_playlist(playlist_name)
     if playlist is not None:
         raise PlaylistNotUniqueException
     user = repo.get_user(user_name)
     if user is None:
         raise UnknownUserException
-    # Create and store the new User, with password encrypted.
-    playlist = PlayList(playlist_name)
+    playlist = PlayList(playlist_name, user)
     repo.add_playlist(playlist)
 
 def get_playlist(playlist_name: str, user_name: str, repo: AbstractRepository):
