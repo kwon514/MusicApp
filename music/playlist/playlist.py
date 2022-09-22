@@ -53,7 +53,6 @@ def playlist(playlist_name):
     user_name = session['user_name']
     try:
         playlist = services.get_playlist(playlist_name, user_name, repo.repo_instance)
-        # list_of_tracks = services.get_list_of_tracks(playlist_name, repo.repo_instance)
     except services.UnknownUserException:
         return redirect(url_for('authentication_bp.login')) 
     return render_template('playlist/playlist.html',
