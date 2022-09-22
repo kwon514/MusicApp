@@ -1,37 +1,86 @@
 {% extends 'layout.html' %}
 {% block content %}
+    <div id="snackbar">Playlist link copied to clipboard!</div>
     <playlist id="playlist">
-        <h1 class="title">{{playlist_name}}</h1>
-        <table class="result-table">
-            <thead>
+    <table id="playlist-head">
+        <tr>
+            <td>
+                <h1 class="title no-margin">{{ playlist_name }}</h1>
+            </td>
+            <td>
+                <form method="POST" action="{{ handler_url }}" style="display: inline-block;">
+                    {{ copy_playlist.button(onclick="showLinkToast()", class="btn", style="height: 50px;") }}
+                </form>
+                <a onclick="showLinkToast()" class="clipboard">
+                    <div class="btn">
+                        <i style="font-size:22px" class="fa">&#xf0c1;</i>
+                        <span class="text"><b>COPY LINK</b></span>
+                    </div>
+                </a>
+            </td>
+        </tr>
+    </table>
+    {% if playlist_name_error_message is not none %}
+                    <ul class="errors">
+                        {% if playlist_name_error_message is not none %}
+                        <li>
+                            {{ playlist_name_error_message }}
+                        </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Track Name</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for track in list_of_tracks %}
                 <tr>
-                    <th>Track Name</th>
-                    <th>Artist</th>
-                    <th>Album</th>
-                    <th>Duration</th>
+                    <td>
+                        <a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a>
+                    </td>
+                    <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for track in list_of_tracks %}
-                    <tr>
-                        <td><a href="{{ url_for('view_bp.view_track', track_id=track.track_id) }}">{{ track.title }}</a></td>
-                        <td><a href="{{ url_for('search_bp.search_results', search_by="artist", query=track.artist.full_name) }}">{{ track.artist.full_name }}</a></td>
-                        <td><a href="{{ url_for('search_bp.search_results', search_by="album", query=track.album.title) }}">{{ track.album.title }}</a></td>
-                        <td>{{ "{}:{:02d}".format(track.track_duration // 60, track.track_duration  % 60) }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            {% endfor %}
+        </tbody>
+    </table>
     </playlist>
 {% endblock content %}
 {% block scripts %}
     <script>
-    $(document).ready(function () {
-      $('.result-table').DataTable({
-        "searching": false,
-        "pageLength": 50,
-        "lengthChange": false
-      });
-    });
+        $(document).ready(function () {
+        $('.result-table').DataTable({
+            "searching": false,
+            "pageLength": 50,
+            "lengthChange": false
+        });
+        });
     </script>
-{% endblock %}
+    <script>
+        function showLinkToast() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+        var $temp = $("<input>");
+        var $url = $(location).attr('href');
+
+        $('.clipboard').on('click', function() {
+        $("body").append($temp);
+        $temp.val($url).select();
+        document.execCommand("copy");
+        $temp.remove();
+        });
+    </script>
+{% endblock scripts %}
