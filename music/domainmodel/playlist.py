@@ -1,11 +1,16 @@
 from music.domainmodel.track import Track
-
+from music.domainmodel.user import User
 
 class PlayList:
 
-    def __init__(self, playlist_name):
+    def __init__(self, playlist_name: str, user: User):
         self.__playlist_name = playlist_name
         self.__list_of_tracks = []
+        self.__user = user
+
+    @property
+    def user(self) -> User:
+        return self.__user
 
     @property
     def playlist_name(self) -> str:
