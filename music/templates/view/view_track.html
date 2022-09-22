@@ -35,7 +35,11 @@
             <i style="font-size:22px" class="fa">&#xf067;</i>
             <span class="text"><b>ADD TO PLAYLIST</b></span>
             <div class="dropdown-content">
-                {% if playlists|length == 0 %}
+                {% if 'user_name' not in session %}
+                    <p>
+                        <a href="{{ url_for('authentication_bp.login')}}">Login</a> to continue.
+                    </p>
+                {% elif playlists|length == 0 %}
                     <p>You have no playlists.</p>
                 {% endif %}
                 {% for playlist in playlists %}
@@ -48,7 +52,6 @@
                 {% endfor %}
             </div>
         </div>
-
         <div id="review-div">
             <h2 class="subheader">Reviews</h2>
             {% if 'user_name' in session %}

@@ -33,6 +33,9 @@ class MemoryRepository(AbstractRepository):
     def get_user(self, user_name) -> User:
         return next((user for user in self.__users if user.user_name == user_name), None)
 
+    def get_new_user_id(self) -> int:
+        return len(self.__users) + 1
+
     def add_review(self, review: Review):
         self.__reviews.append(review)
         
@@ -78,26 +81,25 @@ class MemoryRepository(AbstractRepository):
                 pass
         return results            
 
-
     def get_track_by_id(self, track_id: int) -> Track:
         for track in self.__tracks:
             if int(track.track_id) == track_id:
                 return track 
 
-    def add_playlist(self, playlist: PlayList):
+    def add_playlist(self, playlist_name: str, user: User):
+        playlist = PlayList(playlist_name, user)
         self.__playlists.append(playlist)
 
     def get_playlist(self, playlist_name) -> PlayList:
         return next((playlist for playlist in self.__playlists if playlist.playlist_name == playlist_name), None)
 
-    def get_playlists(self) -> List[PlayList]:
-        return self.__playlists    
+    def get_playlists(self, user) -> List[PlayList]:
+        return [playlist for playlist in self.__playlists if playlist.user == user]
 
     def add_track(self, track, playlist_name: str):
         list_of_tracks = self.get_list_of_tracks(playlist_name)   
         list_of_tracks.append(track)
  
-
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         playlist = self.get_playlist(playlist_name)
         list_of_tracks = playlist.list_of_tracks()     

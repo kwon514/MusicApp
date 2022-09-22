@@ -23,7 +23,7 @@ def add_user(user_name: str, password: str, repo: AbstractRepository):
 
     password_hash = generate_password_hash(password)
 
-    user = User(user_name, password_hash)
+    user = User(user_name, password_hash, repo.get_new_user_id())
     repo.add_user(user)
 
 

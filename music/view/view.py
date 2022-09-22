@@ -16,6 +16,13 @@ view_blueprint = Blueprint(
 def view_track():
     track_id = request.args.get('track_id')
     track = services.get_track_by_id(int(track_id), repo.repo_instance)
+    playlists = []
+    
+    try:
+        user_name = session['user_name']
+        playlists = services.get_playlists(user_name, repo.repo_instance)
+    except KeyError:
+        pass
     
     review_form = ReviewForm()
     if review_form.is_submitted():
@@ -24,8 +31,6 @@ def view_track():
         return redirect(url_for('view_bp.view_track', track_id=track_id))
     reviews = services.get_review(track, repo.repo_instance)
     reviews.reverse()
-    
-    playlists = services.get_playlists_without_username(repo.repo_instance)
     
     return render_template('view/view_track.html', track=track, review_form=review_form, reviews=reviews, playlists=playlists)
 class ReviewForm(FlaskForm):
