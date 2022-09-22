@@ -28,6 +28,10 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_new_user_id(self) -> int:
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_review(self, review: Review):
         raise NotImplementedError
     
