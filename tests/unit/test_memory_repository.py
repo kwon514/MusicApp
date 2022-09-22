@@ -13,7 +13,7 @@ from music.adapters.repository import RepositoryException
 
 
 def test_add_user(in_memory_repo):
-    user = User('dave', '123456789')
+    user = User('dave', '123456789', 1)
     in_memory_repo.add_user(user)
 
     assert in_memory_repo.get_user('dave') is user  
@@ -39,10 +39,10 @@ def test_get_track_by_id(in_memory_repo):
     in_memory_repo.get_track_by_id(track_id)   
 
 def test_add_playlist(in_memory_repo):
-    playlist = PlayList("New Playlist")
-    in_memory_repo.add_playlist(playlist) 
+    user = User('dave', '123456789', 1)
+    in_memory_repo.add_playlist("New Playlist", user)
 
 def test_get_playlist(in_memory_repo):
-    playlist = PlayList("New Playlist")
-    in_memory_repo.get_playlist(playlist) 
+    playlist_name = "playlist_name"
+    in_memory_repo.get_playlist(playlist_name) 
   
