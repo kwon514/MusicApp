@@ -24,3 +24,14 @@
         </table>
     </playlist>
 {% endblock content %}
+{% block scripts %}
+    <script>
+    $(document).ready(function () {
+      $('.result-table').DataTable({
+        "searching": false,
+        "pageLength": 50,
+        "lengthChange": false
+      });
+    });
+    </script>
+{% endblock %}
