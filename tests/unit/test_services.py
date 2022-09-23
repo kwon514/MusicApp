@@ -52,24 +52,26 @@ def test_add_playlist(in_memory_repo):
 
 def test_get_playlist_without_username(in_memory_repo):
     playlist = "New Playlist"
-    playlist_services.get_playlist_without_username(playlist, in_memory_repo)
+    new_user_name = 'user'
+    with pytest.raises(playlist_services.UnknownUserException):  
+        playlist_services.add_playlist(playlist, new_user_name, in_memory_repo)
 
 def test_get_track_by_id(in_memory_repo):
     track_id = 2
-    playlist_services.get_track_by_id(track_id, in_memory_repo)    
+    assert playlist_services.get_track_by_id(track_id, in_memory_repo).title == "Food"   
 
 def test_get_tracks(in_memory_repo):
     title = "food"    
-    search_services.get_tracks(title, in_memory_repo)
+    assert search_services.get_tracks(title, in_memory_repo)[0].title == "Food"   
 
 def test_get_artists(in_memory_repo):
     artist = "AWOL"    
-    search_services.get_tracks(artist, in_memory_repo)
+    assert search_services.get_artists(artist, in_memory_repo)[0].title == "Food"
 
 def test_get_albums(in_memory_repo):
     album = "AWOL - A Way Of Life"    
-    search_services.get_albums(album, in_memory_repo)   
+    assert search_services.get_albums(album, in_memory_repo)[0].title == "Food"   
 
 def test_get_genres(in_memory_repo):
-    genre = "Rock"    
-    search_services.get_genres(genre, in_memory_repo)        
+    genre = "Hip-Hop"    
+    assert search_services.get_genres(genre, in_memory_repo)[0].title == "Food"         
