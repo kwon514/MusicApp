@@ -33,9 +33,6 @@ class MemoryRepository(AbstractRepository):
     def get_user(self, user_name) -> User:
         return next((user for user in self.__users if user.user_name == user_name), None)
 
-    def get_new_user_id(self) -> int:
-        return len(self.__users) + 1
-
     def add_review(self, review: Review):
         self.__reviews.append(review)
         

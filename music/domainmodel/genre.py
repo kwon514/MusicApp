@@ -9,6 +9,7 @@ class Genre:
             self.__name = genre_name.strip()
         else:
             self.__name = None
+        self.__tracks: list = []    
 
     @property
     def genre_id(self) -> int:
@@ -25,6 +26,10 @@ class Genre:
             name = name.strip()
             if name != '':
                 self.__name = name
+
+    @property
+    def tracks(self) -> list:
+        return self.__tracks            
 
     def __repr__(self) -> str:
         return f'<Genre {self.name}, genre id = {self.genre_id}>'

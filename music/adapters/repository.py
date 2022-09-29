@@ -25,19 +25,15 @@ class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
     def get_user(self, user_name: str) -> User:
-        raise NotImplementedError
+        raise NotImplementedError 
 
-    @abc.abstractmethod
-    def get_new_user_id(self) -> int:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def add_review(self, review: Review):
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def add_review(self, review: Review):
+    #     raise NotImplementedError
     
-    @abc.abstractmethod
-    def get_reviews_by_track(self, track: Track) -> List[Review]:
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_reviews_by_track(self, track: Track) -> List[Review]:
+    #     raise NotImplementedError
 
     @abc.abstractmethod
     def set_track_list(self, track_list: list):
@@ -67,31 +63,31 @@ class AbstractRepository(abc.ABC):
     def get_tracks_by_album(self, album_name: str) -> List[Track]:
         raise NotImplementedError
 
-    @abc.abstractmethod
-    def get_tracks_by_genre(self, genre_name: str) -> List[Track]:
-        raise NotImplementedError    
+    # @abc.abstractmethod
+    # def get_tracks_by_genre(self, genre_name: str) -> List[Track]:
+    #     raise NotImplementedError    
 
-    @abc.abstractmethod
-    def get_track_by_id(self, track_id: int) -> Track:
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_track_by_id(self, track_id: int) -> Track:
+    #     raise NotImplementedError
 
-    @abc.abstractmethod
-    def add_playlist(self, playlist_name: str, user: User):
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def add_playlist(self, playlist_name: str, user: User):
+    #     raise NotImplementedError
 
-    @abc.abstractmethod
-    def get_playlist(self, playlist_name: str) -> PlayList:
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_playlist(self, playlist_name: str) -> PlayList:
+    #     raise NotImplementedError
 
-    @abc.abstractmethod
-    def get_playlists(self, user) -> List[PlayList]:
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_playlists(self, user) -> List[PlayList]:
+    #     raise NotImplementedError
 
-    @abc.abstractmethod
-    def add_track(self, track: Track, playlist_name: str):
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def add_track(self, track: Track, playlist_name: str):
+    #     raise NotImplementedError
 
-    @abc.abstractmethod
-    def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
-        raise NotImplementedError
+    # @abc.abstractmethod
+    # def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
+    #     raise NotImplementedError
 
