@@ -139,11 +139,16 @@ class TrackCSVReader:
         for track_row in track_rows:
             track = create_track_object(track_row)
             artist = create_artist_object(track_row)
+            if artist in self.__dataset_of_artists:
+                artist = next((a for a in self.__dataset_of_artists if a == artist))
+
             track.artist = artist
 
             # Extract track_genres attributes and assign genres to the track.
             track_genres = extract_genres(track_row)
             for genre in track_genres:
+                if genre in self.__dataset_of_genres:
+                    genre = next((g for g in self.__dataset_of_genres if g == genre))
                 track.add_genre(genre)
 
             album_id = int(
