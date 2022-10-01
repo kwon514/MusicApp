@@ -101,7 +101,7 @@ def map_model_to_tables():
         '_Track__artist': relationship(Artist, back_populates='_Artist__tracks'),
         '_Track__genres': relationship(Genre, secondary=track_genre_table, back_populates='_Genre__tracks'),
         '_Track__playlists': relationship(PlayList, secondary=playlist_track_table, back_populates='_PlayList__list_of_tracks'),
-        '_Track__reviews': relationship(Review, back_populates='_Review__track', uselist=False)
+        '_Track__reviews': relationship(Review, back_populates='_Review__track')
     })
 
     mapper(Review, reviews_table, properties={
