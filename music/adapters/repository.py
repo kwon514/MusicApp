@@ -90,4 +90,3 @@ class AbstractRepository(abc.ABC):
     @abc.abstractmethod
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         raise NotImplementedError
-
