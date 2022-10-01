@@ -25,11 +25,11 @@ users_table = Table(
 
 tracks_table = Table(
     'tracks', metadata,
-    Column('track_id', Integer, primary_key=True),
-    Column('track_title', String(255),nullable=False),
+    Column('track_id', Integer, primary_key=True, autoincrement=True),
+    Column('track_title', String(255), nullable=False),
     Column('artist_id', ForeignKey('artists.artist_id')),
     Column('album_id', ForeignKey('albums.id')),
-    Column('track_url', String(255),nullable=False),
+    Column('track_url', String(255), nullable=False),
     Column('track_duration', Integer, nullable=False),
     Column('rating', Integer)
 )
@@ -38,7 +38,7 @@ reviews_table = Table(
     'reviews', metadata,
     Column('review_id', Integer, primary_key=True, autoincrement=True),
     Column('track_id', ForeignKey('tracks.track_id')),
-    Column('review_text', String(255),nullable=False),
+    Column('review_text', String(255), nullable=False),
     Column('rating', Integer),
     Column('timestamp', DateTime, nullable=False)
 )
@@ -54,22 +54,22 @@ genres_table = Table(
     'genres', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('genre_id', Integer),
-    Column('name', String(255),nullable=False)
+    Column('name', String(255), nullable=False)
 )
 
 artists_table = Table(
     'artists', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('artist_id', Integer),
-    Column('full_name', String(255),nullable=False)
+    Column('full_name', String(255), nullable=False)
 )
 
 albums_table = Table(
     'albums', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('title', String(255),nullable=False),
-    Column('album_url', String(255),nullable=False),
-    Column('album_type', String(255),nullable=False),
+    Column('title', String(255), nullable=False),
+    Column('album_url', String(255), nullable=False),
+    Column('album_type', String(255), nullable=False),
     Column('release_year', Integer)
 )
 
@@ -80,10 +80,19 @@ track_genre_table = Table(
     Column('genre_id', ForeignKey('genres.genre_id'))
 )
 
+playlist_track_table = Table(
+    'playlist_track', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('playlist_id', ForeignKey('playlists.playlist_id')),
+    Column('track_id', ForeignKey('tracks.track_id'))
+)
+
+
 def map_model_to_tables():
     mapper(User, users_table, properties={
         '_User__user_name': users_table.c.user_name,
         '_User__password': users_table.c.password,
+        '_User__playlists': relationship(PlayList, backref='_PlayList__user'),
     })
 
     mapper(Track, tracks_table, properties={
@@ -92,18 +101,20 @@ def map_model_to_tables():
         '_Track__track_url': tracks_table.c.track_url,
         '_Track__track_duration': tracks_table.c.track_duration,
         '_Track__rating': tracks_table.c.rating,
-        '_Track__genres': relationship(Genre, secondary=track_genre_table,
-                                       back_populates='_Genre__tracks')
+        '_Track__genres': relationship(Genre, secondary=track_genre_table, back_populates='_Genre__tracks'),
+        '_Track__playlists': relationship(PlayList, secondary=playlist_track_table, back_populates='_PlayList__list_of_tracks'),
+        '_Track__reviews': relationship(Review, backref='_Review__track')
     })
 
     mapper(Review, reviews_table, properties={
         '_Review__review_text': reviews_table.c.review_text,
         '_Review__rating': reviews_table.c.rating,
-        '_Review__timestamp': reviews_table.c.timestamp
+        '_Review__timestamp': reviews_table.c.timestamp,
     })
 
     mapper(PlayList, playlists_table, properties={
-        '_PlayList__playlist_name': playlists_table.c.playlist_name
+        '_PlayList__playlist_name': playlists_table.c.playlist_name,
+        '_PlayList__list_of_tracks': relationship(Track, secondary=playlist_track_table, back_populates='_Track__playlists')
     })
 
     mapper(Genre, genres_table, properties={

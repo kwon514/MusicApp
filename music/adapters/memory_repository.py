@@ -33,7 +33,8 @@ class MemoryRepository(AbstractRepository):
     def get_user(self, user_name) -> User:
         return next((user for user in self.__users if user.user_name == user_name), None)
 
-    def add_review(self, review: Review):
+    def add_review(self, track, review_text, rating):
+        review = Review(track, review_text, rating)
         self.__reviews.append(review)
         
     def get_reviews_by_track(self, track: Track) -> List[Review]:
@@ -52,10 +53,12 @@ class MemoryRepository(AbstractRepository):
         self.__genres += genre_list
 
     def get_tracks_by_title(self, track_title: str) -> List[Track]:
-        return [track for track in self.__tracks if track.title.lower()[0:len(track_title)] == track_title.strip().lower()[0:len(track_title)]]
+        track_title = " " + track_title.strip().lower()
+        return [track for track in self.__tracks if track_title in (" " + track.title.lower())]
 
     def get_tracks_by_artist(self, track_artist: str) -> List[Track]:
-        return [track for track in self.__tracks if track.artist.full_name.lower()[0:len(track_artist)] == track_artist.strip().lower()[0:len(track_artist)]]
+        track_artist = " " + track_artist.strip().lower()
+        return [track for track in self.__tracks if track_artist in (" " + track.artist.full_name.lower())]
 
     def get_tracks_by_album(self, album_name: str) -> List[Track]:
         results = []
