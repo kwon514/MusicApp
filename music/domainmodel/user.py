@@ -32,10 +32,10 @@ class User:
 
     @user_id.setter
     def user_id(self, user_id: int):
-        if type(user_id) is int and user_id > 0:
+        if type(user_id) is int and user_id > 0 and self.__user_id is None:
             self.__user_id = user_id
         else:
-            raise ValueError("User ID should be a non negative integer.")
+            raise AttributeError("Pre-existing User ID must be null or should be a non negative integer.")
 
     @property
     def user_name(self) -> str:
