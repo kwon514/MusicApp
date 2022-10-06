@@ -11,7 +11,7 @@ class User:
             else:
                 self.__user_id = user_id
         else:
-            self.__user_id = user_id         
+            self.__user_id = user_id
 
         if type(user_name) is str:
             self.__user_name = user_name.strip()
@@ -29,6 +29,13 @@ class User:
     @property
     def user_id(self) -> int:
         return self.__user_id
+
+    @user_id.setter
+    def user_id(self, user_id: int):
+        if type(user_id) is int and user_id > 0:
+            self.__user_id = user_id
+        else:
+            raise ValueError("User ID should be a non negative integer.")
 
     @property
     def user_name(self) -> str:
