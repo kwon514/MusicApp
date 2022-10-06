@@ -170,4 +170,4 @@ class SqlAlchemyRepository(AbstractRepository):
 
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         playlist = self.get_playlist(playlist_name)
-        return self._session_cm.session.query(Track).filter(Track._Track__playlist == playlist).all()
+        return self._session_cm.session.query(Track).filter(Track._Track__playlists.contains(playlist)).all()
