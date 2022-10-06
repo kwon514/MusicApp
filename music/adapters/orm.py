@@ -29,8 +29,8 @@ tracks_table = Table(
     Column('track_title', String(255), nullable=False),
     Column('artist_id', ForeignKey('artists.artist_id')),
     Column('album_id', ForeignKey('albums.album_id')),
-    Column('track_url', String(255), nullable=False),
-    Column('track_duration', Integer, nullable=False),
+    Column('track_url', String(255)),
+    Column('track_duration', Integer),
     Column('rating', Integer)
 )
 
@@ -66,8 +66,8 @@ albums_table = Table(
     'albums', metadata,
     Column('album_id', Integer, primary_key=True, autoincrement=True),
     Column('title', String(255), nullable=False),
-    Column('album_url', String(255), nullable=False),
-    Column('album_type', String(255), nullable=False),
+    Column('album_url', String(255)),
+    Column('album_type', String(255)),
     Column('release_year', Integer)
 )
 
