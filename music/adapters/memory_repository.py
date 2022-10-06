@@ -28,6 +28,8 @@ class MemoryRepository(AbstractRepository):
         self.__playlists = list()
 
     def add_user(self, user: User):
+        if user.user_id is None:
+            user.user_id = len(self.__users) + 1
         self.__users.append(user)
 
     def get_user(self, user_name) -> User:
