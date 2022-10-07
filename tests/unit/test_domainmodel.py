@@ -624,17 +624,17 @@ class TestCSVReader:
     def test_csv_reader(self):
         reader = create_csv_reader()
 
-        assert len(reader.dataset_of_tracks) == 2000
-        assert len(reader.dataset_of_artists) == 263
-        assert len(reader.dataset_of_albums) == 427
-        assert len(reader.dataset_of_genres) == 60
+        assert len(reader.dataset_of_tracks) == 10
+        assert len(reader.dataset_of_artists) == 5
+        assert len(reader.dataset_of_albums) == 5
+        assert len(reader.dataset_of_genres) == 7
 
     def test_tracks_dataset(self):
         reader = create_csv_reader()
         tracks = reader.dataset_of_tracks
 
         sorted_tracks = sorted(tracks)
-        assert len(sorted_tracks) == 2000
+        assert len(sorted_tracks) == 10
 
         sorted_tracks_str = str(sorted_tracks[:3])
         assert sorted_tracks_str == '[<Track Food, track id = 2>, <Track Electric Ave, track id = 3>, <Track This World, track id = 5>]'
@@ -649,7 +649,7 @@ class TestCSVReader:
         albums_set = reader.dataset_of_albums
         sorted_albums = sorted(albums_set)
 
-        assert len(sorted_albums) == 427
+        assert len(sorted_albums) == 5
 
         sorted_albums_sample = str(sorted_albums[:3])
         assert sorted_albums_sample == '[<Album AWOL - A Way Of Life, album id = 1>, <Album Niris, album id = 4>, <Album Constant Hitmaker, album id = 6>]'
@@ -659,7 +659,7 @@ class TestCSVReader:
         artists_set = reader.dataset_of_artists
         sorted_artists = sorted(artists_set)
 
-        assert len(sorted_artists) == 263
+        assert len(sorted_artists) == 5
 
         sorted_artists_sample = str(sorted_artists[:3])
         assert sorted_artists_sample == '[<Artist AWOL, artist id = 1>, <Artist Nicky Cook, artist id = 4>, <Artist Kurt Vile, artist id = 6>]'
@@ -670,7 +670,7 @@ class TestCSVReader:
 
         sorted_genres = sorted(genres_set)
 
-        assert len(sorted_genres) == 60
+        assert len(sorted_genres) == 7
 
         sorted_genre_sample = str(sorted_genres[:3])
-        assert sorted_genre_sample == '[<Genre Avant-Garde, genre id = 1>, <Genre International, genre id = 2>, <Genre Blues, genre id = 3>]'
+        assert sorted_genre_sample == '[<Genre Avant-Garde, genre id = 1>, <Genre Pop, genre id = 10>, <Genre Folk, genre id = 17>]'
