@@ -104,7 +104,7 @@ class MemoryRepository(AbstractRepository):
  
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         playlist = self.get_playlist(playlist_name)
-        list_of_tracks = playlist.list_of_tracks()     
+        list_of_tracks = playlist.list_of_tracks
         return list_of_tracks
 
 def populate(data_path: Path, repo: MemoryRepository):
