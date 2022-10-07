@@ -119,7 +119,6 @@ class SqlAlchemyRepository(AbstractRepository):
         try:
             albums = self._session_cm.session.query(Album).filter(func.lower(
                 Album._Album__title).contains(album_name.strip().lower())).all()
-            print(albums)
             for album in albums:
                 tracks += self._session_cm.session.query(Track).filter(
                     Track._Track__album.__eq__(album)).all()
