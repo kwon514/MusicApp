@@ -61,7 +61,7 @@ class Album:
             self.__release_year = new_release_year
         else:
             self.__release_year = None
-
+        
     def __repr__(self) -> str:
         return f"<Album {self.title}, album id = {self.album_id}>"
 

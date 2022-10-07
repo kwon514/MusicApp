@@ -62,7 +62,7 @@ def playlist(playlist_name):
     except services.UnknownUserException:
         return redirect(url_for('authentication_bp.login'))
 
-    list_of_tracks = playlist.list_of_tracks()
+    list_of_tracks = playlist.list_of_tracks
 
     if copy_playlist.is_submitted():
         try:

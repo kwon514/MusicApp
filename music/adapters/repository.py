@@ -25,11 +25,7 @@ class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
     def get_user(self, user_name: str) -> User:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_new_user_id(self) -> int:
-        raise NotImplementedError
+        raise NotImplementedError 
 
     @abc.abstractmethod
     def add_review(self, review: Review):
@@ -94,4 +90,3 @@ class AbstractRepository(abc.ABC):
     @abc.abstractmethod
     def get_list_of_tracks(self, playlist_name: str) -> List[Track]:
         raise NotImplementedError
-

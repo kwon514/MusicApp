@@ -15,8 +15,8 @@ class UnknownUserException(Exception):
 def get_track_by_id(track_id: int, repo: AbstractRepository):
     return repo.get_track_by_id(track_id)
 
-def add_review(review: Review, repo: AbstractRepository):
-    repo.add_review(review)
+def add_review(track, review_text, rating, repo: AbstractRepository):
+    repo.add_review(track, review_text, rating)
 
 def get_review(track: Track, repo: AbstractRepository):
     return repo.get_reviews_by_track(track)
