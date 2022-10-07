@@ -87,6 +87,7 @@ playlist_track_table = Table(
 
 def map_model_to_tables():
     mapper(User, users_table, properties={
+        '_User__user_id': users_table.c.id,
         '_User__user_name': users_table.c.user_name,
         '_User__password': users_table.c.password,
         '_User__playlists': relationship(PlayList, back_populates='_PlayList__user'),
