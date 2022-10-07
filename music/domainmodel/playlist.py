@@ -22,6 +22,7 @@ class PlayList:
         if type(playlist_name) is str and playlist_name.strip() != '':
             self.__playlist_name = playlist_name.strip()         
 
+    @property
     def list_of_tracks(self) -> list[Track]:
         return self.__list_of_tracks
 
