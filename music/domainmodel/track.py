@@ -88,6 +88,11 @@ class Track:
     def rating(self) -> int:
         return self.__rating
     
+    @rating.setter
+    def rating(self, new_rating: int):
+        if type(new_rating) is int and 1 <= new_rating <= 5:
+            self.__rating = new_rating
+    
     def add_genre(self, new_genre):
         if not isinstance(new_genre, Genre) or new_genre in self.__genres:
             return
